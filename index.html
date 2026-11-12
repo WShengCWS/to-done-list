@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F3F1EC">
+<meta name="description" content="Your to-do list as sticky notes on an office desk.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Desk Tasks">
+<title>Desk Tasks</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <script type="module" crossorigin src="./assets/index-BLCDXJjl.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DZlmLesV.css">
+<link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js" defer></script></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="goldify" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues=".52 .86 .99 1"/><feFuncG type="table" tableValues=".34 .62 .86 .97"/><feFuncB type="table" tableValues=".06 .16 .42 .78"/></feComponentTransfer></filter><filter id="inkline" x="-15%" y="-15%" width="130%" height="130%"><feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="d"/><feFlood flood-color="#2B2722" flood-opacity=".78"/><feComposite in2="d" operator="in" result="o"/><feMerge><feMergeNode in="o"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="toWhite"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter><linearGradient id="litFrom" gradientUnits="userSpaceOnUse" x1="22" y1="14" x2="78" y2="92"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".32"/><stop offset=".42" stop-color="#FFFFFF" stop-opacity="0"/><stop offset=".62" stop-color="#000000" stop-opacity="0"/><stop offset="1" stop-color="#000000" stop-opacity=".2"/></linearGradient><radialGradient id="bowlsheen" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#6A86D0" stop-opacity=".7"/><stop offset=".5" stop-color="#24356B" stop-opacity="0"/></radialGradient></defs></svg>
+<div class="app" id="app"><main id="view" class="view"></main></div>
+
+<nav class="tabbar" aria-label="Main">
+  <span class="rail-brand">Desk Tasks</span>
+  <button class="tab" data-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>Today</button>
+  <button class="tab" data-tab="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r=".6" fill="currentColor"/><circle cx="12" cy="14.5" r=".6" fill="currentColor"/></svg>Plan</button>
+  <button class="plus" id="plus" aria-label="New task" title="New task (N)"><svg width="20" height="20" viewBox="0 0 16 16"><path d="M8 2.5v11M2.5 8h11" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+  <button class="tab" data-tab="priorities"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="2"/><rect x="13" y="13" width="7.5" height="7.5" rx="2"/></svg>Priorities</button>
+  <button class="tab" data-tab="finds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9h16v10.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19.5z"/><path d="M3 5.5h18V9H3zM10 13h4"/></svg>Finds</button>
+  <button class="tab tset" data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></svg>Settings</button>
+</nav>
+
+<span id="edhint" class="vh">Press Enter to edit, D to mark done, 1 to 4 to change priority.</span>
+<div class="toast" id="toast" role="status" inert><span id="toastT"></span><button id="undo">Undo</button></div>
+<div class="drop" id="drop" role="status" aria-live="polite" inert></div>
+<div class="reveal" id="reveal" role="dialog" aria-modal="true" aria-label="New find"></div>
+<div class="pop" id="pop"></div>
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true"></section>
+
+<div class="game" id="game" role="dialog" aria-modal="true" aria-label="Paper toss">
+  <div class="stage" id="stage"><canvas id="cv"></canvas>
+    <div class="hud"><button class="hbtn" id="skip">Just mark done</button><span class="hbtn" id="streak">Streak 0</span></div>
+    <div class="gtag" id="gtag"></div>
+    <div class="hint" id="hint">Flick toward the bin. Mind the air con.</div>
+    <div class="cheer" id="cheer"><b>Swish</b><span></span></div>
+    <div class="panel" id="panel"><h2 id="pTitle">So close</h2><p id="pText"></p><div class="acts"><button class="btn btn-quiet" id="anyway">Mark done</button><button class="btn btn-leaf" id="again">Throw again</button></div></div>
+  </div>
+</div>
+
+</body></html>
